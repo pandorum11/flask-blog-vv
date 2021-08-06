@@ -27,6 +27,14 @@ def index():
 	return render_template("index.html")
 
 
+<<<<<<< HEAD
+=======
+# @app.route('/user/<string:name>/<int:id>')
+# def user(name, id):
+# 	return "User page: " + name + " - " + str(id)
+
+
+>>>>>>> a884e983d7405926c4cc21c5a7ed3d304d13aa92
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
 	"""
@@ -67,7 +75,11 @@ def update_article(id):
 			return redirect('/posts')
 		except:
 			return "При добавлении статьи произошла ошибка"
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> a884e983d7405926c4cc21c5a7ed3d304d13aa92
 	else:	
 		return render_template("post_update.html", article=article)
 
