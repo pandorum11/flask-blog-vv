@@ -27,11 +27,6 @@ def index():
 	return render_template("index.html")
 
 
-# @app.route('/user/<string:name>/<int:id>')
-# def user(name, id):
-# 	return "User page: " + name + " - " + str(id)
-
-
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
 	"""
@@ -72,7 +67,7 @@ def update_article(id):
 			return redirect('/posts')
 		except:
 			return "При добавлении статьи произошла ошибка"
-			
+
 	else:	
 		return render_template("post_update.html", article=article)
 
