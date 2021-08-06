@@ -34,7 +34,11 @@ def index():
 
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
-	if request.method == 'POST' and request.form['title'] != '' and request.form['intro'] != '':
+	"""
+	Router for article creation
+	"""
+	if request.method == 'POST' and request.form['title'] != ''\
+		and request.form['intro'] != '':
 
 		title = request.form['title']
 		intro = request.form['intro']
@@ -53,8 +57,12 @@ def create_article():
 
 @app.route('/posts/<int:id>/upd', methods=['POST', 'GET'])
 def update_article(id):
+	"""
+	Router for article updating
+	"""
 	article = Article.query.get(id)
-	if request.method == 'POST' and request.form['title'] != '' and request.form['intro'] != '':
+	if request.method == 'POST' and request.form['title'] != ''\
+		and request.form['intro'] != '':
 
 		article.title = request.form['title']
 		article.intro = request.form['intro']
@@ -64,27 +72,40 @@ def update_article(id):
 			return redirect('/posts')
 		except:
 			return "При добавлении статьи произошла ошибка"
+			
 	else:	
 		return render_template("post_update.html", article=article)
 
 
 @app.route('/about')
 def about():
+	"""
+	Router for page "about"
+	"""
 	return render_template("about.html")
 
 
 @app.route('/posts')
 def posts():
+	"""
+	Router for get all posts
+	"""
 	articles = Article.query.order_by(Article.date.desc()).all()
 	return render_template("posts.html", articles=articles)
 
 @app.route('/posts/<int:id>')
 def post_detail(id):
+	"""
+	Router for get post by id
+	"""
 	article = Article.query.get(id)
 	return render_template("post_detail.html", article=article)
 
 @app.route('/posts/<int:id>/del')
 def post_delete(id):
+	"""
+	Router for deleting post
+	"""
 	article = Article.query.get_or_404(id)
 
 	try:
